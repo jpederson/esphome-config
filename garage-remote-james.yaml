@@ -1,5 +1,5 @@
 esphome:
-  name: garage-remote-james
+  name: solder-light-toggle
   friendly_name: Solder Light Toggle
   platformio_options:
     board_build.f_cpu: 40000000L # set clock down to 80mhz instead of 240mhz to extend battery
