@@ -58,4 +58,3 @@ status_led:
     number: GPIO2 
     inverted: false
 
-    
