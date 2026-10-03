@@ -33,7 +33,7 @@ captive_portal:
 sensor:
   - platform: dht
     pin: GPIO4
-    model: DHT22
+    model: DHT11
     temperature:
       name: Temperature
       icon: "mdi:thermometer"
