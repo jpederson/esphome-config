@@ -65,3 +65,4 @@ sensor:
     humidity:
       name: "Room Humidity"
     update_interval: 10s
+    address: 0x38
