@@ -16,9 +16,6 @@ logger:
 
 # Enable Home Assistant API
 api:
-  encryption:
-    key: "gv0uxK006Cd8eZrNE4+DGD9MMDkDO3ho8shA8Wzq7lI="
-    
 i2c:
   sda: GPIO8
   scl: GPIO9
