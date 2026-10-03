@@ -28,7 +28,7 @@ captive_portal:
 
 sensor:
 - platform: dht
-  pin: GPIO5
+  pin: GPIO4
   model: dht11
   temperature:
     name: "Room Temperature"
