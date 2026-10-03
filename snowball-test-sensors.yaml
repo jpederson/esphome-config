@@ -1,5 +1,5 @@
 esphome:
-  name: c3-mini-aht10
+  name: snowball-v2
 
 esp32:
   board: esp32-c3-devkitm-1
@@ -12,7 +12,7 @@ wifi:
   power_save_mode: NONE
   fast_connect: true
   ap:
-    ssid: test-sensors
+    ssid: snowball-v2-ap
     password: !secret fallback-ap-password
 logger:
 
