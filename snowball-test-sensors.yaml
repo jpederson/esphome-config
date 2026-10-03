@@ -37,6 +37,7 @@ sensor:
       id: 'temperature_a'
       name: "Temperature"
       unit_of_measurement: "°F"
+      accuracy_decimals: 1
       filters:
         - lambda: return x * (9.0 / 5.0) + 32.0;
     humidity:
