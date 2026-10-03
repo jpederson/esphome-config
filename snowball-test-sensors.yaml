@@ -50,7 +50,6 @@ i2c:
   sda: 8
   scl: 9
   scan: true
-  id: bus_a
 
 # disable onboard-led
 status_led:
