@@ -39,7 +39,7 @@ sensor:
       icon: "mdi:thermometer"
       unit_of_measurement: "°F"
       filters:
-        - lambda: return x * (9.0/5.0) + 32.0;
+        - lambda: return x * (9.0/5.0) + 32.0 + 53;
     humidity:
       name: Humidity
       icon: "mdi:air-humidifier"
