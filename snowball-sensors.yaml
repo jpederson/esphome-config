@@ -28,3 +28,13 @@ wifi:
     password: "CeQUJJYPRxol"
 
 captive_portal:
+  
+sensor:
+  - platform: dht
+    pin: GPIO4
+    model: DHT22
+    temperature:
+      name: "Room Temperature"
+    humidity:
+      name: "Room Humidity"
+    update_interval: 10s
