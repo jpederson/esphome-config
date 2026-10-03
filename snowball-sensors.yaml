@@ -22,6 +22,8 @@ ota:
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
+  output_power: 8.5dB
+  fast_connect: on
   ap:
     ssid: Snowball Sensor Fallback Hotspot
     password: "CeQUJJYPRxol"
