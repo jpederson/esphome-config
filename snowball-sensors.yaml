@@ -4,12 +4,11 @@
 esphome:
   name: snowball-sensors
   friendly_name: Snowball Sensors
-
+  
 esp32:
-  variant: esp32c3
-  flash_size: 4MB
+  board: esp32-c3-devkitm-1
   framework:
-    type: esp-idf
+    type: arduino
 
 logger:
 
