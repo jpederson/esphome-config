@@ -43,4 +43,5 @@ sensor:
     humidity:
       id: 'humidity_a'
       name: "Humidity"
+      accuracy_decimals: 1
     update_interval: 5s
