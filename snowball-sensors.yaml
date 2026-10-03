@@ -35,7 +35,12 @@ sensor:
     pin: GPIO4
     model: DHT22
     temperature:
-      name: "Room Temperature"
+      name: Temperature
+      icon: "mdi:thermometer"
+      force_update: true
     humidity:
-      name: "Room Humidity"
+      name: Humidity
+      icon: "mdi:air-humidifier"
+      force_update: true
+      internal: false
     update_interval: 10s
