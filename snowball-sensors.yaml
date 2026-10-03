@@ -55,7 +55,7 @@ wifi:
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "studio-sensors-ap"
+    ssid: "snowball-sensors-ap"
     password: "BzupHAdIQZy8"
 
 captive_portal:
