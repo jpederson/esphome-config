@@ -18,7 +18,9 @@ i2c:
   sda: GPIO8
   scl: GPIO9
   scan: true
-
+  sda_pullup_enabled: true
+  scl_pullup_enabled: true
+  
 sensor:
   - platform: aht10
     variant: AHT20
