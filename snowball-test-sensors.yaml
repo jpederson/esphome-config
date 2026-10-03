@@ -58,3 +58,11 @@ status_led:
     number: GPIO2 
     inverted: false
 
+sensor:
+  - platform: aht10
+    variant: AHT10 # Optional: Change to AHT20 if you actually have an AHT20/DHT20 sensor
+    temperature:
+      name: "Room Temperature"
+    humidity:
+      name: "Room Humidity"
+    update_interval: 60s
