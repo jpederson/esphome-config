@@ -38,6 +38,8 @@ sensor:
       name: Temperature
       icon: "mdi:thermometer"
       force_update: true
+      filters:
+        - offset: 50
     humidity:
       name: Humidity
       icon: "mdi:air-humidifier"
