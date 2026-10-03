@@ -37,9 +37,9 @@ sensor:
     temperature:
       name: Temperature
       icon: "mdi:thermometer"
-      force_update: true
+      unit_of_measurement: "°F"
       filters:
-        - offset: 50
+        - lambda: return x * (9.0/5.0) + 32.0;
     humidity:
       name: Humidity
       icon: "mdi:air-humidifier"
