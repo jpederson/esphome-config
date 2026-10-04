@@ -45,7 +45,6 @@ sensor:
       name: "Humidity (Cold)"
       accuracy_decimals: 1
     update_interval: 5s
-  
     address: 0x38
   - platform: bme680
     temperature:
