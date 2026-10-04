@@ -14,7 +14,7 @@ wifi:
   output_power: 8.5dB
   fast_connect: true
   ap:
-    ssid: snowball-v2-ap
+    ssid: snowball-sensors-ap
     password: !secret fallback-ap-password
 logger:
 
