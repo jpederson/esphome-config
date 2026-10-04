@@ -22,7 +22,11 @@ logger:
 api:
   encryption:
     key: !secret ha-api-key
-    
+
+ota:
+  platform: esphome
+  password: "7232c1fbcf3b089621aed0a42dde03c9"
+  
 i2c:
   sda: GPIO8
   scl: GPIO9
