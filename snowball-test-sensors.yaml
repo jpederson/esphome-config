@@ -75,28 +75,28 @@ sensor:
     address: 0x38
     update_interval: 10s
 
-#  - platform: bme680
-#    temperature:
-#      id: 'temperature_hot'
-#      name: "Temperature (Hot)"
-#      oversampling: 16x
+  - platform: bme680
+    temperature:
+      id: 'temperature_hot'
+      name: "Temperature (Hot)"
+      oversampling: 16x
 #      filters:
 #      - offset: -2
-#    pressure:
-#      name: "Pressure"
-#    humidity:
-#      id: 'humidity_hot'
-#      name: "Humidity (Hot)"
-#    gas_resistance:
-#      id: "gas_resistance"
-#      name: "Gas Resistance"
-#    address: 0x77
-#    update_interval: 5s
+    pressure:
+      name: "Pressure"
+    humidity:
+      id: 'humidity_hot'
+      name: "Humidity (Hot)"
+    gas_resistance:
+      id: "gas_resistance"
+      name: "Gas Resistance"
+    address: 0x77
+    update_interval: 5s
 
-#  - platform: template
-#    name: "Indoor Air Quality"
-#    id: iaq
-#    icon: "mdi:gauge"
-#    update_interval: 30s
-#    lambda: |-
-#      return log(id(gas_resistance).state) + 0.04 *  id(humidity_hot).state;
+  - platform: template
+    name: "Indoor Air Quality"
+    id: iaq
+    icon: "mdi:gauge"
+    update_interval: 30s
+    lambda: |-
+      return log(id(gas_resistance).state) + 0.04 *  id(humidity_hot).state;
