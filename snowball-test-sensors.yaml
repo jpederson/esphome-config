@@ -43,7 +43,7 @@ sensor:
         - lambda: return x * (9.0 / 5.0) + 32.0;
     humidity:
       id: 'humidity_cold'
-      name: "Humidity"
+      name: "Humidity (Cold)"
       accuracy_decimals: 1
     update_interval: 5s
   - platform: bme680
@@ -57,7 +57,7 @@ sensor:
       name: "Pressure"
     humidity:
       id: 'humidity_hot'
-      name: "Humidity"
+      name: "Humidity (Hot)"
     gas_resistance:
       id: "gas_resistance"
       name: "Gas Resistance"
@@ -70,4 +70,4 @@ sensor:
     icon: "mdi:gauge"
     update_interval: 30s
     lambda: |-
-      return log(id(gas_resistance).state) + 0.04 *  id(humidity).state;
+      return log(id(gas_resistance).state) + 0.04 *  id(humidity_hot).state;
