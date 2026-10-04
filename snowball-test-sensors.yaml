@@ -31,6 +31,7 @@ i2c:
   sda: GPIO8
   scl: GPIO9
   scan: true
+  frequency: 100kHz
   sda_pullup_enabled: true
   scl_pullup_enabled: true
   
@@ -42,13 +43,13 @@ sensor:
       name: "Temperature (Cold)"
       unit_of_measurement: "°F"
       accuracy_decimals: 1
-      filters:
-        - lambda: return x * (9.0 / 5.0) + 32.0;
+#      filters:
+#        - lambda: return x * (9.0 / 5.0) + 32.0;
     humidity:
       id: 'humidity_cold'
       name: "Humidity (Cold)"
       accuracy_decimals: 1
-    address: "0x38"
+    address: 0x38
     update_interval: 5s
 
 #  - platform: bme680
