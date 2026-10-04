@@ -46,3 +46,4 @@ sensor:
       name: "Humidity"
       accuracy_decimals: 1
     update_interval: 5s
+
