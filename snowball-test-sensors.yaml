@@ -60,7 +60,7 @@ i2c:
   
 sensor:
   - platform: aht10
-    variant: AHT10
+    variant: AHT20
     temperature:
       id: 'temperature_cold'
       name: "Temperature (Cold)"
