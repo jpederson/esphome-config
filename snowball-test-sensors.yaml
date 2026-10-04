@@ -35,7 +35,7 @@ sensor:
     variant: AHT10
     temperature:
       id: 'temperature_cold'
-      name: "Temperature (Coldside)"
+      name: "Temperature (Cold)"
       unit_of_measurement: "°F"
       accuracy_decimals: 1
       filters:
@@ -49,7 +49,7 @@ sensor:
   - platform: bme680
     temperature:
       id: 'temperature_hot'
-      name: "Temperature (Hotside)"
+      name: "Temperature (Hot)"
       oversampling: 16x
       filters:
       - offset: -2
