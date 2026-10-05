@@ -83,7 +83,7 @@ sensor:
       accuracy_decimals: 1
       unit_of_measurement: "°F"
       filters:
-        - lambda: return x * (9.0 / 5.0) + 30.0;
+        - lambda: return x * (9.0 / 5.0) + 32.0;
     pressure:
       name: "Pressure"
     humidity:
