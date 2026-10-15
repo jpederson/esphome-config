@@ -62,14 +62,14 @@ sensor:
   - platform: aht10
     variant: AHT20
     temperature:
-      id: 'temperature_cold'
+      id: 'snowball_temp_cold'
       name: "Temperature (Cold)"
       unit_of_measurement: "°F"
       accuracy_decimals: 1
       filters:
         - lambda: return x * (9.0 / 5.0) + 32.0;
     humidity:
-      id: 'humidity_cold'
+      id: 'snowball_humidity_cold'
       name: "Humidity (Cold)"
       accuracy_decimals: 1
     address: 0x38
@@ -77,7 +77,7 @@ sensor:
 
   - platform: bme680
     temperature:
-      id: 'temperature_hot'
+      id: 'snowball_temp_hot'
       name: "Temperature (Hot)"
       oversampling: 16x
       accuracy_decimals: 1
@@ -87,7 +87,7 @@ sensor:
     pressure:
       name: "Pressure"
     humidity:
-      id: 'humidity_hot'
+      id: 'snowball_humidity_hot'
       name: "Humidity (Hot)"
     gas_resistance:
       id: "gas_resistance"
@@ -101,7 +101,7 @@ sensor:
     icon: "mdi:gauge"
     update_interval: 30s
     lambda: |-
-      return log(id(gas_resistance).state) + 0.04 *  id(humidity_hot).state;
+      return log(id(gas_resistance).state) + 0.04 *  id(snowball_humidity_hot).state;
 
 text_sensor:
   - platform: template
