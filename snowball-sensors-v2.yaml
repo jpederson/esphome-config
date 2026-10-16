@@ -85,7 +85,7 @@ sensor:
       unit_of_measurement: °C
       icon: "mdi:thermometer"
       filters:
-        - offset: 5
+        - offset: 2
     pressure:
       name: Pressure
       icon: "mdi:car-brake-low-pressure"
