@@ -66,8 +66,8 @@ sensor:
       name: "Temperature (Cold)"
       unit_of_measurement: "°F"
       accuracy_decimals: 1
-      filters:
-        - lambda: return x * (9.0 / 5.0) + 32.0;
+#      filters:
+#        - lambda: return x * (9.0 / 5.0) + 32.0;
     humidity:
       id: 'humidity_cold'
       name: "Humidity (Cold)"
@@ -82,8 +82,8 @@ sensor:
       oversampling: 16x
       accuracy_decimals: 1
       unit_of_measurement: "°F"
-      filters:
-        - lambda: return x * (9.0 / 5.0) + 32;
+#      filters:
+#        - lambda: return x * (9.0 / 5.0) + 32 + 9;
     pressure:
       name: "Pressure"
     humidity:
