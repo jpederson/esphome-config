@@ -62,10 +62,11 @@ sensor:
   - platform: aht10
     variant: AHT20
     temperature:
-      id: 'temperature_cold'
-      name: "Temperature (Cold)"
-      unit_of_measurement: "°C"
+      id: temperature_cold
+      name: Temperature (Cold)
+      unit_of_measurement: °C
       accuracy_decimals: 1
+      icon: "mdi:thermometer"
 #      filters:
 #        - lambda: return x * (9.0 / 5.0) + 32.0;
     humidity:
@@ -77,18 +78,21 @@ sensor:
 
   - platform: bme680
     temperature:
-      id: 'temperature_hot'
-      name: "Temperature (Hot)"
+      id: temperature_hot
+      name: Temperature (Hot)
       oversampling: 16x
       accuracy_decimals: 1
-      unit_of_measurement: "°C"
+      unit_of_measurement: °C
+      icon: "mdi:thermometer"
 #      filters:
 #        - lambda: return x * (9.0 / 5.0) + 32 + 9;
     pressure:
-      name: "Pressure"
+      name: Pressure
+      icon: "mdi:car-brake-low-pressure"
     humidity:
-      id: 'humidity_hot'
-      name: "Humidity (Hot)"
+      id: humidity_hot
+      name: Humidity (Hot)
+      icon: "mdi:air-humidifier"
     gas_resistance:
       id: "gas_resistance"
       name: "Gas Resistance"
