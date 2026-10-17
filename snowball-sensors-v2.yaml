@@ -74,7 +74,7 @@ sensor:
       name: "Humidity (Cold)"
       accuracy_decimals: 1
     address: 0x38
-    update_interval: 10s
+    update_interval: 15s
 
   - platform: bme680
     temperature:
@@ -97,7 +97,7 @@ sensor:
       id: "gas_resistance"
       name: "Gas Resistance"
     address: 0x77
-    update_interval: 10s
+    update_interval: 15s
 
   - platform: template
     name: "Indoor Air Quality"
