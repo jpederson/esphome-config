@@ -60,6 +60,7 @@ i2c:
   
 sensor:
   - platform: aht10
+    id: cold
     variant: AHT20
     temperature:
       id: temperature_cold
@@ -68,20 +69,20 @@ sensor:
       accuracy_decimals: 1
       icon: "mdi:thermometer"
     humidity:
-      id: 'humidity_cold'
+      id: humidity
       name: "Humidity (Cold)"
       accuracy_decimals: 1
     address: 0x38
     update_interval: 15s
   - platform: bmp280_i2c
-    id: sensor_bmp280_i2c_1
+    id: hot
     address: 0x76
     update_interval: 15s
     pressure:
       name: Pressure
-      id: sensor_bmp280_i2c_1_pressure
+      id: pressure
     temperature:
-      name: Temperature
-      id: sensor_bmp280_i2c_1_temperature
+      name: Temperature (Hot)
+      id: temperature
 
 
