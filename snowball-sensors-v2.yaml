@@ -75,17 +75,13 @@ sensor:
       accuracy_decimals: 1
     address: 0x38
     update_interval: 15s
-  - platform: bme280_i2c
-    id: sensors_hot
-    humidity:
-      name: Humidity (Hot)
-      id: sensors_hot_humidity
+  - platform: bmp280_i2c
+    id: sensor_bmp280_i2c_1
     pressure:
       name: Pressure
-      id: sensors_hot_pressure
+      id: sensor_bmp280_i2c_1_pressure
     temperature:
-      name: Temperature (Hot)
-      id: sensors_hot_temperature
-    address: 0x76
+      name: Temperature
+      id: sensor_bmp280_i2c_1_temperature
 
 
