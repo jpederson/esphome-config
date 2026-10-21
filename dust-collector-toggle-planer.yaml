@@ -5,7 +5,7 @@ esphome:
 esp32:
   board: esp32-c3-devkitm-1
   framework:
-    type: arduino
+    type: esp-idf
 
 # Enable logging
 logger:
@@ -14,8 +14,8 @@ logger:
 api:
   encryption:
     key: "zztsETbpsAJ6DXoK3jWP8zDoMqqLl3tM1s1IrDGue8c="
-  services:
-    - service: start_effect
+  actions:
+    - action: start_effect
       variables:
         my_effect: string
       then:
@@ -41,10 +41,9 @@ captive_portal:
 light:
   - platform: esp32_rmt_led_strip
     id: bed_notify    
-    rgb_order: GRB
+    channel_colors: GRB
     pin: GPIO2
     num_leds: 7
-    # rmt_channel: 0
     chipset: ws2812
     name: "Light"
     restore_mode: ALWAYS_ON
@@ -105,9 +104,7 @@ binary_sensor:
   - platform: gpio
     name: "Button"
     pin:
-      number: 0
-      mode:
-        input: true
-        pullup: true
+      number: GPIO0
+      mode: INPUT_PULLUP
     filters:
       - invert:
