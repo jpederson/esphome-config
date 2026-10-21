@@ -30,6 +30,68 @@ wifi:
 
 captive_portal:
 
+light:
+  - platform: esp32_rmt_led_strip
+    id: bed_notify    
+    channel_colors: GRB
+    pin: GPIO2
+    num_leds: 7
+    chipset: ws2812
+    name: "Light"
+    restore_mode: ALWAYS_ON
+    on_turn_on:
+      then:
+        - light.turn_on:
+            id: bed_notify
+            brightness: 50%
+            red: 0.6
+            green: 0.0
+            blue: 1.0
+            effect: Twinkle
+    effects:
+      - addressable_twinkle:
+          name: Twinkle
+          twinkle_probability: 10%
+          progress_interval: 4ms
+      - automation:
+          name: Print Done
+          sequence:
+          - light.turn_on:
+              id: bed_notify
+              brightness: 100%
+              red: 0
+              green: 1
+              blue: 0
+              transition_length: 400ms
+          - delay: 500ms
+          - light.turn_on:
+              id: bed_notify
+              brightness: 20%
+              red: 0
+              green: 1
+              blue: 0
+              transition_length: 800ms
+          - delay: 2s
+      - automation:
+          name: Print Error
+          sequence:
+          - light.turn_on:
+              id: bed_notify
+              brightness: 100%
+              red: 1
+              green: 0
+              blue: 0
+              transition_length: 400ms
+          - delay: 500ms
+          - light.turn_on:
+              id: bed_notify
+              brightness: 20%
+              red: 1
+              green: 0
+              blue: 0
+              transition_length: 800ms
+          - delay: 2s
+            
 binary_sensor:
   - platform: gpio
     name: "Button"
