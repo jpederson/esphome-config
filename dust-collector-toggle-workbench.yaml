@@ -14,6 +14,14 @@ logger:
 api:
   encryption:
     key: "zztsETbpsAJ6DXoK3jWP8zDoMqqLl3tM1s1IrDGue8c="
+  actions:
+    - action: start_effect
+      variables:
+        my_effect: string
+      then:
+        - light.turn_on:
+            id: bed_notify
+            effect: !lambda 'return my_effect.c_str();'
 
 ota:
   platform: esphome
