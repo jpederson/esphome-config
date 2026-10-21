@@ -79,7 +79,7 @@ sensor:
     address: 0x76
     update_interval: 15s
     pressure:
-      name: Pressure
+      name: Pressure (Hot)
       id: pressure
     temperature:
       name: Temperature (Hot)
