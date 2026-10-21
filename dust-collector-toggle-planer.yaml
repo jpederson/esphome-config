@@ -33,7 +33,7 @@ wifi:
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "dust-collector-toggle-planer-ap"
+    ssid: "dust-toggle-planer-ap"
     password: "TgHNs1ved4DK"
 
 captive_portal:
