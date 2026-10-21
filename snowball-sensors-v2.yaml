@@ -74,6 +74,7 @@ sensor:
     address: 0x38
     update_interval: 15s
   - platform: bmp280_i2c
+    address: 0x76
     id: sensor_bmp280_i2c_1
     pressure:
       name: Pressure
