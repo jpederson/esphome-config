@@ -83,6 +83,9 @@ sensor:
       id: pressure
     temperature:
       name: Temperature (Hot)
+      unit_of_measurement: °C
+      accuracy_decimals: 1
+      icon: "mdi:thermometer"
       id: temperature
 
 
