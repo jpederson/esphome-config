@@ -86,5 +86,6 @@ sensor:
     temperature:
       name: Temperature (Hot)
       id: sensors_hot_temperature
+    address: 0x76
 
 
