@@ -21,7 +21,7 @@ api:
       then:
         - light.turn_on:
             id: bed_notify
-            effect: !lambda 'return my_effect;'
+            effect: !lambda 'return my_effect.c_str();'
 
 ota:
   platform: esphome
