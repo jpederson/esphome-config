@@ -33,7 +33,7 @@ wifi:
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "bedroom-dot-ap"
+    ssid: "dust-toggle-workbench-ap"
     password: "TgHNs1ved4DK"
 
 captive_portal:
