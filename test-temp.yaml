@@ -40,3 +40,6 @@ sensor:
     index: 0
     name: "Temperature"
     update_interval: 5s
+    icon: "mdi:thermometer"
+    unit_of_measurement: °C
+    device_class: temperature
