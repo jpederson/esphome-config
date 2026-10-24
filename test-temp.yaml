@@ -1,25 +1,33 @@
 esphome:
-  name: test-temp
-  friendly_name: Test Temp
+  name: esp32-super-mini-temp
 
-# Replace this with your actual platform if you aren't using ESP32.
 esp32:
-  board: esp32dev
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
 
-logger:
+# Configure Wi-Fi for your local network
+wifi:
+  ssid: "YOUR_WIFI_SSID"
+  password: "YOUR_WIFI_PASSWORD"
 
+# Enable Home Assistant API and Web Server
 api:
-  encryption:
-    key: "YDKWW8DVbYhWJJzQk/rndp20aTLeRbiuWu2p+O8K5Xs="
-
+logger:
 ota:
   - platform: esphome
 
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-  ap:
-    ssid: Test Temp Fallback Hotspot
-    password: "excbwY4BLAam"
+web_server:
+  port: 80
 
-captive_portal:
+# 1-Wire bus setup
+one_wire:
+  - platform: gpio
+    pin: GPIO8
+
+# Sensor configuration
+sensor:
+  - platform: dallas_txt
+    index: 0
+    name: "Super Mini Temperature"
+    update_interval: 60s
