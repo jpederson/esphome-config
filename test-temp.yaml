@@ -38,5 +38,5 @@ one_wire:
 sensor:
   - platform: dallas_temp
     index: 0
-    name: "Super Mini Temperature"
-    update_interval: 60s
+    name: "Temperature"
+    update_interval: 5s
