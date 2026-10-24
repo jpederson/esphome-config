@@ -37,9 +37,16 @@ one_wire:
 # Sensor configuration
 sensor:
   - platform: dallas_temp
-    index: 0
-    name: "Temperature"
+    name: "Temperature (Cold)"
     update_interval: 5s
     icon: "mdi:thermometer"
     unit_of_measurement: °C
     device_class: temperature
+    address: 0xf1000000cb614528
+  - platform: dallas_temp
+    name: "Temperature (Hot)"
+    update_interval: 5s
+    icon: "mdi:thermometer"
+    unit_of_measurement: °C
+    device_class: temperature
+    address: 0x94000000caa59b28
