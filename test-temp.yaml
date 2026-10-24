@@ -6,16 +6,25 @@ esp32:
   framework:
     type: esp-idf
 
-# Configure Wi-Fi for your local network
 wifi:
-  ssid: "YOUR_WIFI_SSID"
-  password: "YOUR_WIFI_PASSWORD"
-
-# Enable Home Assistant API and Web Server
-api:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  power_save_mode: NONE
+  output_power: 8.5dB
+  fast_connect: true
+  ap:
+    ssid: test-temp-ap
+    password: !secret fallback-ap-password
 logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret ha-api-key
+
 ota:
-  - platform: esphome
+  platform: esphome
+  encryption:
 
 web_server:
   port: 80
