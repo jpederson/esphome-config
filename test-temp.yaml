@@ -32,7 +32,7 @@ web_server:
 # 1-Wire bus setup
 one_wire:
   - platform: gpio
-    pin: GPIO9
+    pin: GPIO8
 
 # Sensor configuration
 sensor:
