@@ -43,9 +43,6 @@ bluetooth_proxy:
 web_server:
   port: 80
 
-
-
-
 # 1-Wire bus setup
 one_wire:
   - platform: gpio
