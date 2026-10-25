@@ -43,49 +43,28 @@ bluetooth_proxy:
 web_server:
   port: 80
 
-external_components:
-  - source:
-      type: git
-      url: https://github.com/ssieb/custom_components #Thanks for @ssieb components.
-    components: [ serial ]
-  
-i2c:
-  sda: 8
-  scl: 9
-  scan: true
-  id: bus_a
-  frequency: 100kHz
-  sda_pullup_enabled: true
-  scl_pullup_enabled: true
-  
-sensor:
-  - platform: aht10
-    id: cold
-    variant: AHT20
-    temperature:
-      id: temperature_cold
-      name: Temperature (Cold)
-      unit_of_measurement: °C
-      accuracy_decimals: 1
-      icon: "mdi:thermometer"
-    humidity:
-      id: humidity
-      name: Humidity (Cold)
-      accuracy_decimals: 1
-    address: 0x38
-    update_interval: 15s
-  - platform: bmp280_i2c
-    id: hot
-    address: 0x76
-    update_interval: 15s
-    pressure:
-      name: Pressure (Hot)
-      id: pressure
-    temperature:
-      name: Temperature (Hot)
-      unit_of_measurement: °C
-      accuracy_decimals: 1
-      icon: "mdi:thermometer"
-      id: temperature
 
+
+
+# 1-Wire bus setup
+one_wire:
+  - platform: gpio
+    pin: GPIO8
+
+# Sensor configuration
+sensor:
+  - platform: dallas_temp
+    name: "Temperature (Cold)"
+    update_interval: 5s
+    icon: "mdi:thermometer"
+    unit_of_measurement: °C
+    device_class: temperature
+    address: 0xf1000000cb614528
+  - platform: dallas_temp
+    name: "Temperature (Hot)"
+    update_interval: 5s
+    icon: "mdi:thermometer"
+    unit_of_measurement: °C
+    device_class: temperature
+    address: 0x94000000caa59b28
 
