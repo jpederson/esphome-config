@@ -55,10 +55,10 @@ binary_sensor:
 sensor:
   - platform: ld2410
     moving_distance:
-      name: "Moving Target Distance"
+      name: "Moving Distance"
     still_distance:
-      name: "Still Target Distance"
+      name: "Still Distance"
     moving_energy:
-      name: "Moving Target Energy"
+      name: "Moving Energy"
     still_energy:
-      name: "Still Target Energy"
+      name: "Still Energy"
