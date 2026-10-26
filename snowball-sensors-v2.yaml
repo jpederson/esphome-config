@@ -65,5 +65,5 @@ sensor:
     device_class: temperature
     address: 0x94000000caa59b28
     filters:
-      - offset: 8.8
+      - offset: 7.8
 
