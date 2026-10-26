@@ -34,31 +34,29 @@ web_server:
 captive_portal:
 
 uart:
+  id: uart_bus
   rx_pin: GPIO21
   tx_pin: GPIO20
   baud_rate: 256000
   parity: NONE
   stop_bits: 1
 
-ld2410:
-  # Optional: configure gateway or timeout settings
-
-binary_sensor:
-  - platform: ld2410
-    has_target:
-      name: "Presence Detected"
-    has_moving_target:
-      name: "Moving Target"
-    has_still_target:
-      name: "Still Target"
+ld2420:
+  uart_id: uart_bus
 
 sensor:
-  - platform: ld2410
+  - platform: ld2420
     moving_distance:
       name: "Moving Distance"
-    still_distance:
-      name: "Still Distance"
-    moving_energy:
-      name: "Moving Energy"
-    still_energy:
-      name: "Still Energy"
+
+# True/False (On/Off) states go here
+binary_sensor:
+  - platform: ld2420
+    has_target:
+      name: "Presence Target"
+
+# String/Text information goes here
+text_sensor:
+  - platform: ld2420
+    fw_version:
+      name: "Firmware Version"
