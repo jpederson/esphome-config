@@ -85,7 +85,7 @@ sensor:
     icon: "mdi:gauge"
     update_interval: 30s
     lambda: |-
-      return log(id(gas_resistance).state) + 0.04 *  id(humidity_hot).state;
+      return log(id(gas_resistance).state) + 0.04 * id(humidity_hot).state;
 
 text_sensor:
   - platform: template
