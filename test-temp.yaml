@@ -29,24 +29,91 @@ ota:
 web_server:
   port: 80
 
-# 1-Wire bus setup
-one_wire:
-  - platform: gpio
-    pin: GPIO8
-
-# Sensor configuration
+external_components:
+  - source:
+      type: git
+      url: https://github.com/ssieb/custom_components #Thanks for @ssieb components.
+    components: [ serial ]
+  
+i2c:
+  sda: 8
+  scl: 9
+  scan: true
+  id: bus_a
+  frequency: 100kHz
+  sda_pullup_enabled: true
+  scl_pullup_enabled: true
+  
 sensor:
-  - platform: dallas_temp
-    name: "Temperature (Cold)"
-    update_interval: 5s
-    icon: "mdi:thermometer"
-    unit_of_measurement: °C
-    device_class: temperature
-    address: 0xf1000000cb614528
-  - platform: dallas_temp
-    name: "Temperature (Hot)"
-    update_interval: 5s
-    icon: "mdi:thermometer"
-    unit_of_measurement: °C
-    device_class: temperature
-    address: 0x94000000caa59b28
+  - platform: aht10
+    variant: AHT20
+    temperature:
+      id: temperature_cold
+      name: Temperature (Cold)
+      unit_of_measurement: °C
+      accuracy_decimals: 1
+    humidity:
+      id: 'humidity_cold'
+      name: "Humidity (Cold)"
+      accuracy_decimals: 1
+    address: 0x38
+    update_interval: 10s
+
+  - platform: bme680
+    temperature:
+      id: 'temperature_hot'
+      name: "Temperature (Hot)"
+      oversampling: 16x
+      accuracy_decimals: 1
+      unit_of_measurement: "°C"
+      filters:
+        - offset: 1
+    pressure:
+      name: "Pressure"
+    humidity:
+      id: 'humidity_hot'
+      name: "Humidity (Hot)"
+    gas_resistance:
+      id: "gas_resistance"
+      name: "Gas Resistance"
+    address: 0x77
+    update_interval: 10s
+
+  - platform: template
+    name: "Indoor Air Quality"
+    id: iaq
+    icon: "mdi:gauge"
+    update_interval: 30s
+    lambda: |-
+      return log(id(gas_resistance).state) + 0.04 *  id(humidity_hot).state;
+
+text_sensor:
+  - platform: template
+    name: "IAQ Classification"
+    icon: "mdi:checkbox-marked-circle-outline"
+    update_interval: 30s
+    lambda: |-
+      if (int(id(iaq).state) <= 50) {
+        return {"Excellent"};
+      }
+      else if (int(id(iaq).state) <= 100) {
+        return {"Good"};
+      }
+      else if (int(id(iaq).state) <= 150) {
+        return {"Lightly polluted"};
+      }
+      else if (int(id(iaq).state) <= 200) {
+        return {"Moderately polluted"};
+      }
+      else if (int(id(iaq).state) <= 250) {
+        return {"Heavily polluted"};
+      }
+      else if (int(id(iaq).state) <= 350) {
+        return {"Severely polluted"};
+      }
+      else if (int(id(iaq).state) <= 500) {
+        return {"Extremely polluted"};
+      }
+      else {
+        return {"unknown"};
+      }
