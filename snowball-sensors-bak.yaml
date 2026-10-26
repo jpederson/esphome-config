@@ -62,11 +62,12 @@ sensor:
   - platform: aht10
     variant: AHT20
     temperature:
-      id: 'temperature_cold'
-      name: "Temperature (Cold)"
-      unit_of_measurement: "°C"
+      id: temperature_cold
+      name: Temperature (Cold)
+      unit_of_measurement: °C
       accuracy_decimals: 1
-
+      filters:
+        - offset: 2
     humidity:
       id: 'humidity_cold'
       name: "Humidity (Cold)"
