@@ -52,30 +52,36 @@ sensor:
       name: Temperature (Cold)
       unit_of_measurement: °C
       accuracy_decimals: 1
+      icon: "mdi:thermometer"
     humidity:
-      id: 'humidity_cold'
-      name: "Humidity (Cold)"
+      id: humidity_cold
+      name: Humidity (Cold)
       accuracy_decimals: 1
+      icon: "mdi:water"
     address: 0x38
     update_interval: 5s
 
   - platform: bme680
     temperature:
-      id: 'temperature_hot'
-      name: "Temperature (Hot)"
+      id: temperature_hot
+      name: Temperature (Hot)
       oversampling: 16x
       accuracy_decimals: 1
-      unit_of_measurement: "°C"
+      unit_of_measurement: °C
       filters:
         - offset: 1
+      icon: "mdi:thermometer"
     pressure:
-      name: "Pressure"
+      name: Pressure
+      icon: "mdi:car-brake-low-pressure"
     humidity:
-      id: 'humidity_hot'
-      name: "Humidity (Hot)"
+      id: humidity_hot
+      name: Humidity (Hot)
+      icon: "mdi:water"
     gas_resistance:
-      id: "gas_resistance"
-      name: "Gas Resistance"
+      id: gas_resistance
+      name: Gas Resistance
+      icon: "mdi:meter-gas"
     address: 0x77
     update_interval: 5s
 
