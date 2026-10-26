@@ -57,7 +57,7 @@ sensor:
       name: "Humidity (Cold)"
       accuracy_decimals: 1
     address: 0x38
-    update_interval: 10s
+    update_interval: 5s
 
   - platform: bme680
     temperature:
@@ -77,13 +77,13 @@ sensor:
       id: "gas_resistance"
       name: "Gas Resistance"
     address: 0x77
-    update_interval: 10s
+    update_interval: 5s
 
   - platform: template
     name: "Indoor Air Quality"
     id: iaq
     icon: "mdi:gauge"
-    update_interval: 30s
+    update_interval: 10s
     lambda: |-
       return log(id(gas_resistance).state) + 0.04 * id(humidity_hot).state;
 
@@ -91,7 +91,7 @@ text_sensor:
   - platform: template
     name: "IAQ Classification"
     icon: "mdi:checkbox-marked-circle-outline"
-    update_interval: 30s
+    update_interval: 10s
     lambda: |-
       if (int(id(iaq).state) <= 50) {
         return {"Excellent"};
