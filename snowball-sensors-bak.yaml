@@ -66,8 +66,6 @@ sensor:
       name: Temperature (Cold)
       unit_of_measurement: °C
       accuracy_decimals: 1
-#      filters:
-#        - offset: 2
     humidity:
       id: 'humidity_cold'
       name: "Humidity (Cold)"
@@ -82,7 +80,8 @@ sensor:
       oversampling: 16x
       accuracy_decimals: 1
       unit_of_measurement: "°C"
-
+#      filters:
+#        - offset: 2
     pressure:
       name: "Pressure"
     humidity:
