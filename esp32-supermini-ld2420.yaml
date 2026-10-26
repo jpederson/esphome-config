@@ -38,8 +38,6 @@ uart:
   rx_pin: GPIO21
   tx_pin: GPIO20
   baud_rate: 256000
-  parity: NONE
-  stop_bits: 1
 
 ld2420:
   uart_id: uart_bus
