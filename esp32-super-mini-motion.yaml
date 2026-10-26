@@ -2,9 +2,12 @@ esphome:
   name: esp32-super-mini-motion
   friendly_name: esp32-super-mini-motion
 
-  platform: ESP32
+esp32:
   board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
 
+    
 logger:
   baud_rate: 0 # Recommended to disable or set to 0 if memory optimization is needed
 
