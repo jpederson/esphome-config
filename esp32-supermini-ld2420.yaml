@@ -60,3 +60,4 @@ text_sensor:
   - platform: ld2420
     fw_version:
       name: "Firmware Version"
+      
