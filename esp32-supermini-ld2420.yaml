@@ -32,18 +32,18 @@ web_server:
   port: 80
 
 captive_portal:
-  
+  id: 
 binary_sensor:
   - platform: gpio
     name: "LD2420 OT1 Signal"
     pin: 
-      number: GPIO18 # Change to the actual ESP pin connected to OT1
+      number: GPIO3 # Change to the actual ESP pin connected to OT1
       mode: INPUT_PULLDOWN
     device_class: motion
 
   - platform: gpio
     name: "LD2420 OT2 Signal"
     pin: 
-      number: GPIO19 # Change to the actual ESP pin connected to OT2
+      number: GPIO20 # Change to the actual ESP pin connected to OT2
       mode: INPUT_PULLDOWN
     device_class: motion
