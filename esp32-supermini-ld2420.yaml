@@ -44,6 +44,6 @@ binary_sensor:
   - platform: gpio
     name: "LD2420 OT2 Signal"
     pin: 
-      number: GPIO20 # Change to the actual ESP pin connected to OT2
+      number: GPIO21 # Change to the actual ESP pin connected to OT2
       mode: INPUT_PULLDOWN
     device_class: motion
