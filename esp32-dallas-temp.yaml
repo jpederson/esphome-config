@@ -50,9 +50,8 @@ one_wire:
 
 # Sensor configuration
 sensor:
-
   - platform: dallas_temp
-    name: "Temperature (Hot)"
+    name: "Temperature"
     update_interval: 5s
     icon: "mdi:thermometer"
     unit_of_measurement: °C
