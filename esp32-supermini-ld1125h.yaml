@@ -74,9 +74,6 @@ sensor:
   - platform: bme680
     temperature:
       name: "Temperature"
-      oversampling: 16x
-      filters:
-      - offset: -2
     pressure:
       name: "Pressure"
     humidity:
@@ -87,7 +84,6 @@ sensor:
       name: "Gas Resistance"
     address: 0x77
     update_interval: 15s
-
   - platform: template
     name: "Indoor Air Quality"
     id: iaq
