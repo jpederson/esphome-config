@@ -6,17 +6,6 @@ substitutions:
 packages:
   core: !include common/supermini/core.yaml
 
-# Enable Home Assistant API
-api:
-  actions:
-    - action: start_effect
-      variables:
-        my_effect: string
-      then:
-        - light.turn_on:
-            id: bed_notify
-            effect: !lambda 'return my_effect.c_str();'
-
 light:
   - platform: esp32_rmt_led_strip
     id: bed_notify    
@@ -40,44 +29,6 @@ light:
           name: Twinkle
           twinkle_probability: 10%
           progress_interval: 4ms
-      - automation:
-          name: Print Done
-          sequence:
-          - light.turn_on:
-              id: bed_notify
-              brightness: 100%
-              red: 0
-              green: 1
-              blue: 0
-              transition_length: 400ms
-          - delay: 500ms
-          - light.turn_on:
-              id: bed_notify
-              brightness: 20%
-              red: 0
-              green: 1
-              blue: 0
-              transition_length: 800ms
-          - delay: 2s
-      - automation:
-          name: Print Error
-          sequence:
-          - light.turn_on:
-              id: bed_notify
-              brightness: 100%
-              red: 1
-              green: 0
-              blue: 0
-              transition_length: 400ms
-          - delay: 500ms
-          - light.turn_on:
-              id: bed_notify
-              brightness: 20%
-              red: 1
-              green: 0
-              blue: 0
-              transition_length: 800ms
-          - delay: 2s
             
 binary_sensor:
   - platform: gpio
