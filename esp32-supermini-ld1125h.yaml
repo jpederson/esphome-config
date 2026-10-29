@@ -1,15 +1,44 @@
+
+substitutions:
+  devicename: "esp32-supermini-ld1125h"
+  friendly_name: "esp32-supermini-ld1125h"
+  update_time: 10s #update time for for general temp sensors etc
+
 esphome:
-  name: esp32-supermini-ld1125h
-  friendly_name: esp32-supermini-ld1125h
+  name: ${devicename}
+  friendly_name: ${friendly_name}
+  on_boot:
+    priority: -200
+    then:
+      - uart.write:
+          id: uart_a
+          data: !lambda |-
+            std::string th1st = "mth1=" + str_sprintf("%.0f",id(LD1125H_mth1).state) +"\r\n";
+            return std::vector<uint8_t>(th1st.begin(), th1st.end());
+      - uart.write:
+          id: uart_a
+          data: !lambda |-
+            std::string th2st = "mth2=" + str_sprintf("%.0f",id(LD1125H_mth2).state) +"\r\n";
+            return std::vector<uint8_t>(th2st.begin(), th2st.end());
+      - uart.write:
+          id: uart_a
+          data: !lambda |-
+            std::string th3st = "mth3=" + str_sprintf("%.0f",id(LD1125H_mth3).state) +"\r\n";
+            return std::vector<uint8_t>(th3st.begin(), th3st.end());
+      - uart.write:
+          id: uart_a
+          data: !lambda |-
+            std::string rmaxst = "rmax=" + str_sprintf("%.1f",id(LD1125H_rmax).state) +"\r\n";
+            return std::vector<uint8_t>(rmaxst.begin(), rmaxst.end());
             
 esp32:
   board: esp32-c3-devkitm-1
   framework:
     type: arduino
 
-external_components:
-  - source: github://patrick3399/Hi-Link_mmWave_Radar_ESPHome
-    
+packages:
+  sensor_suite: !include common/hlk-ld1125h.yaml
+  
 # Enable logging
 logger:
 
@@ -118,22 +147,5 @@ text_sensor:
       else {
         return {"unknown"};
       }
-
-# 3. Create the binary sensors that trigger based on the text logic above
-binary_sensor:
-  - platform: template
-    name: "LD1125H Motion"
-    id: ld1125h_motion
-  - platform: template
-    name: "LD1125H Static Presence"
-    id: ld1125h_presence
-    
-hlk_ld1125h:
-  uart_id: uart_a
-  motion:
-    name: "LD1125H Motion"
-  presence:
-    name: "LD1125H Static Presence"
-
 
 
