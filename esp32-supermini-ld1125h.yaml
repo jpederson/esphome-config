@@ -52,9 +52,6 @@ uart:
   data_bits: 8
   stop_bits: 1
   parity: NONE
-
-ld2410:
-  uart_id: uart_a
   
 i2c:
   sda: 8
@@ -118,12 +115,28 @@ text_sensor:
       else {
         return {"unknown"};
       }
-      
+  - platform: uart
+    uart_id: ld1125h_uart
+    name: "LD1125H Raw Data"
+    id: raw_radar
+    # Lambda logic to parse the ASCII "mov" or "occ" strings into native events
+    on_value:
+      then:
+        - lambda: |-
+            if (x.find("mov") != std::string::npos) {
+              id(ld1125h_motion).publish_state(true);
+            } else if (x.find("occ") != std::string::npos) {
+              id(ld1125h_presence).publish_state(true);
+            } else if (x.find("nobody") != std::string::npos) {
+              id(ld1125h_motion).publish_state(false);
+              id(ld1125h_presence).publish_state(false);
+            }
+
+# 3. Create the binary sensors that trigger based on the text logic above
 binary_sensor:
-  - platform: ld2410
-    has_target:
-      name: "Presence Detected"
-    has_moving_target:
-      name: "Moving Target"
-    has_still_target:
-      name: "Stationary Target"
+  - platform: template
+    name: "LD1125H Motion"
+    id: ld1125h_motion
+  - platform: template
+    name: "LD1125H Static Presence"
+    id: ld1125h_presence
