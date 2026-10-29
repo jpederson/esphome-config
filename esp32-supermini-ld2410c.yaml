@@ -5,5 +5,4 @@ substitutions:
 
 packages:
   core: !include common/supermini/core.yaml
-  motion: !include common/sensors/ld2410.yaml
-
+  motion: !include common/sensors/ld2410c.yaml
