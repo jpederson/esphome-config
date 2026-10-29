@@ -127,4 +127,3 @@ binary_sensor:
       name: "Moving Target"
     has_still_target:
       name: "Stationary Target"
-    name: "Motion"
