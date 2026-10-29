@@ -1,7 +1,7 @@
 
 substitutions:
   devicename: "esp32-supermini-ld1125h"
-  friendly_name: "esp32-supermini-ld1125h"
+  friendly_name: "Test LD1125H"
   update_time: 10s #update time for for general temp sensors etc
 
 packages:
