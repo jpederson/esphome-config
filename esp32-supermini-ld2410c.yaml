@@ -5,4 +5,34 @@ substitutions:
 
 packages:
   core: !include common/supermini/core.yaml
-  motion: !include common/sensors/ld2410.yaml
+  
+uart:
+  id: uart_b
+  rx_pin: 20
+  tx_pin: 21
+  baud_rate: 256000
+  stop_bits: 1
+  parity: NONE
+
+ld2410:
+  uart_id: uart_b
+
+binary_sensor:
+  - platform: ld2410
+    has_target:
+      name: "Presence Detected"
+    has_moving_target:
+      name: "Moving Target"
+    has_still_target:
+      name: "Still Target"
+
+sensor:
+  - platform: ld2410
+    moving_distance:
+      name: "Moving Distance"
+    still_distance:
+      name: "Still Distance"
+    moving_energy:
+      name: "Moving Energy"
+    still_energy:
+      name: "Still Energy"
