@@ -13,7 +13,6 @@ i2c:
   sda: 8
   scl: 9
   scan: true
-  id: bus_a
 
 sensor:
   - platform: bme680
