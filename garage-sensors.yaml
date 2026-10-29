@@ -7,7 +7,6 @@ substitutions:
   
 packages:
   core: !include common/supermini/core.yaml
-  uart: !include common/supermini/uart.yaml
   i2c: !include common/supermini/i2c.yaml
   motion: !include common/sensors/ld1125h.yaml
   temp: !include common/sensors/bme680.yaml
