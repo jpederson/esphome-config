@@ -5,6 +5,5 @@ substitutions:
 
 packages:
   core: !include common/supermini/core.yaml
-  uart: !include common/supermini/uart.yaml
   motion: !include common/sensors/ld2410c.yaml
 
