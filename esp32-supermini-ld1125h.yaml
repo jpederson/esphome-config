@@ -60,17 +60,6 @@ i2c:
   id: bus_a
 
 sensor:
-  - platform: template
-    name: LD1125H Distance
-    id: LD1125H_Distance
-    icon: "mdi:signal-distance-variant"
-    unit_of_measurement: "m"
-    accuracy_decimals: 2
-    filters:    # Use Fliter To Debounce
-    - sliding_window_moving_average:
-        window_size: 8
-        send_every: 2
-    - heartbeat: 0.2s
   - platform: bme680
     temperature:
       id: temperature
@@ -97,10 +86,6 @@ sensor:
       return log(id(gas_resistance).state) + 0.04 *  id(humidity).state;
       
 text_sensor:
-  - platform: template
-    name: Occupancy Status
-    id: LD1125H_Occupancy
-    icon: "mdi:motion-sensor"
   - platform: template
     name: "IAQ Classification"
     icon: "mdi:checkbox-marked-circle-outline"
@@ -132,11 +117,5 @@ text_sensor:
       }
       
 binary_sensor:
-  - platform: template
-    name: Occupancy
-    id: LD1125H_MovOcc_Binary
-    device_class: occupancy
-  - platform: template
-    name: Movement
-    id: LD1125H_Mov_Binary
-    device_class: motion
+  - platform: gpio
+    name: "Motion"
