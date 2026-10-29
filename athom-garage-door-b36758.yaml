@@ -3,8 +3,8 @@ api:
     key: "Z90ctjOBCcpkhozdG6dL+rT9fTqIeqrkhsddB67FpCw="
 
 substitutions:
-  name: athom-garage-door-b36758
-  friendly_name: Athom Garage Door b36758
+  name: athom-garage-door
+  friendly_name: Garage Door Opener
 
 packages:
   China Athom Technology.Garage Door Opener: "github://athom-tech/esp32-configs/athom-garage-door.yaml"
