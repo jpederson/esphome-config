@@ -3,6 +3,7 @@ substitutions:
   devicename: "esp32-supermini-ld1125h"
   friendly_name: "esp32-supermini-ld1125h"
   update_time: 10s
+  temp_offset: 0
 
 packages:
   core: !include common/supermini/core.yaml
@@ -10,4 +11,3 @@ packages:
   i2c: !include common/supermini/i2c.yaml
   motion: !include common/sensors/ld1125h.yaml
   temp: !include common/sensors/bme680.yaml
-
