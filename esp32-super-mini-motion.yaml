@@ -2,8 +2,6 @@
 substitutions:
   devicename: "esp32-supermini-ld2410c"
   friendly_name: "esp32-supermini-ld2410c"
-  update_time: 10s
-  temp_offset: -1
 
 packages:
   core: !include common/supermini/core.yaml
