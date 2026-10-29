@@ -1,9 +1,8 @@
 
 substitutions:
-  devicename: "esp32-supermini-ld2410"
-  friendly_name: "esp32-supermini-ld2410"
+  devicename: "esp32-supermini-ld2410c"
+  friendly_name: "esp32-supermini-ld2410c"
 
 packages:
   core: !include common/supermini/core.yaml
   motion: !include common/sensors/ld2410c.yaml
-
