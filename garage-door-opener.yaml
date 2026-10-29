@@ -1,0 +1,19 @@
+api:
+  encryption:
+    key: "Z90ctjOBCcpkhozdG6dL+rT9fTqIeqrkhsddB67FpCw="
+
+substitutions:
+  name: athom-garage-door
+  friendly_name: Garage Door Opener
+
+packages:
+  China Athom Technology.Garage Door Opener: "github://athom-tech/esp32-configs/athom-garage-door.yaml"
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
