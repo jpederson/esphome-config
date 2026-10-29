@@ -1,7 +1,7 @@
 
 substitutions:
-  devicename: "garage-sensors"
-  friendly_name: "Garage Sensors"
+  devicename: "garage"
+  friendly_name: "Garage"
   update_time: 10s
   temp_offset: -2
   
