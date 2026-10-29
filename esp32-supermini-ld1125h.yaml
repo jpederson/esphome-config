@@ -9,7 +9,6 @@ packages:
   uart: !include common/supermini/uart.yaml
   motion: !include common/sensors/ld1125h.yaml
   
-  
 i2c:
   sda: 8
   scl: 9
