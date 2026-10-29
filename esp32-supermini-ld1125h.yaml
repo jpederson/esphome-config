@@ -53,6 +53,9 @@ uart:
   stop_bits: 1
   parity: NONE
 
+ld2410:
+  uart_id: uart_a
+  
 i2c:
   sda: 8
   scl: 9
@@ -117,5 +120,11 @@ text_sensor:
       }
       
 binary_sensor:
-  - platform: gpio
+  - platform: ld2410
+    has_target:
+      name: "Presence Detected"
+    has_moving_target:
+      name: "Moving Target"
+    has_still_target:
+      name: "Stationary Target"
     name: "Motion"
