@@ -29,13 +29,6 @@ wifi:
     password: !secret fallback-ap-password
 
 
-captive_portal:
-
-
-# enable logging
-logger:
-
-
 # enable the home assistant api
 api:
   encryption:
@@ -52,37 +45,50 @@ ota:
 web_server:
   port: 80
 
-  
+logger:
+  baud_rate: 0 # Set to 0 if sharing UART or experiencing memory issues
+
 uart:
-  id: uart_b
-  rx_pin: 20
-  tx_pin: 21
-  baud_rate: 256000
-  stop_bits: 1
-  parity: NONE
+  - id: uart_link
+    tx_pin: 20
+    rx_pin: 21
+    baud_rate: 256000
+    parity: NONE
+    stop_bits: 1
 
-  
 ld2410:
-  uart_id: uart_b
+  uart_id: uart_link
 
-  
 binary_sensor:
   - platform: ld2410
     has_target:
-      name: "Presence Detected"
+      name: "LD2410C Presence"
     has_moving_target:
-      name: "Moving Target"
+      name: "LD2410C Moving Target"
     has_still_target:
-      name: "Still Target"
+      name: "LD2410C Still Target"
+    out_pin_presence_status:
+      name: "LD2410C Out Pin Status"
 
-      
 sensor:
   - platform: ld2410
     moving_distance:
-      name: "Moving Distance"
+      name: "LD2410C Moving Target Distance"
     still_distance:
-      name: "Still Distance"
+      name: "LD2410C Still Target Distance"
     moving_energy:
-      name: "Moving Energy"
+      name: "LD2410C Moving Target Energy"
     still_energy:
-      name: "Still Energy"
+      name: "LD2410C Still Target Energy"
+    detection_distance:
+      name: "LD2410C Detection Distance"
+
+button:
+  - platform: ld2410
+    factory_reset:
+      name: "LD2410C Factory Reset"
+    restart:
+      name: "LD2410C Restart"
+    query_params:
+      name: "LD2410C Query Parameters"
+
