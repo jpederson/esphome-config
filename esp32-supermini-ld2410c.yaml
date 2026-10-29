@@ -52,6 +52,7 @@ ota:
 web_server:
   port: 80
 
+  
 uart:
   id: uart_b
   rx_pin: 20
@@ -60,9 +61,11 @@ uart:
   stop_bits: 1
   parity: NONE
 
+  
 ld2410:
   uart_id: uart_b
 
+  
 binary_sensor:
   - platform: ld2410
     has_target:
@@ -72,6 +75,7 @@ binary_sensor:
     has_still_target:
       name: "Still Target"
 
+      
 sensor:
   - platform: ld2410
     moving_distance:
