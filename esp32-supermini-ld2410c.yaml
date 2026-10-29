@@ -51,6 +51,7 @@ ota:
 #enable the web server
 web_server:
   port: 80
+
 uart:
   id: uart_b
   rx_pin: 20
