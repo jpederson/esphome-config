@@ -21,7 +21,7 @@ packages:
         aht_humidity_name: Humidity (Cold) 
 
 sensor:
-  - platform: hdc1080
+  - platform: sht3xd
     temperature:
       id: temperature_hot
       name: "Temperature (Hot)"
