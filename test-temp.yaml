@@ -3,11 +3,13 @@ substitutions:
   devicename: "esp32-supermini-temps"
   friendly_name: "esp32-supermini-temps"
   update_time: 10s
-  temp_offset: -1
+  aht_temperature_id: "temperature_cold"
+  aht_temperature_name: "Temperature (Cold)"
+  bme_temperature_id: "temperature_hot"
+  bme_temperature_name: "Temperature (Hot)"
 
 packages:
   core: !include common/supermini/core.yaml
   i2c: !include common/supermini/i2c.yaml
   temp1: !include common/sensors/aht30.yaml
   temp2: !include common/sensors/bme680.yaml
-
