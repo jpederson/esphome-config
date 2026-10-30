@@ -2,7 +2,7 @@
 substitutions:
   devicename: "esp32-supermini-temps"
   friendly_name: "esp32-supermini-temps"
-  update_time: 15s
+  update_time: 5s
 
   
 packages:
