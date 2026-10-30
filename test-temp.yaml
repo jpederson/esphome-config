@@ -1,119 +1,13 @@
-esphome:
-  name: esp32-super-mini-temp
 
-esp32:
-  board: esp32-c3-devkitm-1
-  framework:
-    type: esp-idf
+substitutions:
+  devicename: "esp32-supermini-temps"
+  friendly_name: "esp32-supermini-temps"
+  update_time: 10s
+  temp_offset: -1
 
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-  power_save_mode: NONE
-  output_power: 8.5dB
-  fast_connect: true
-  ap:
-    ssid: test-temp-ap
-    password: !secret fallback-ap-password
-logger:
+packages:
+  core: !include common/supermini/core.yaml
+  i2c: !include common/supermini/i2c.yaml
+  temp1: !include common/sensors/aht30.yaml
+  temp2: !include common/sensors/bme680.yaml
 
-# Enable Home Assistant API
-api:
-  encryption:
-    key: !secret ha-api-key
-
-ota:
-  platform: esphome
-  encryption:
-
-web_server:
-  port: 80
-  
-i2c:
-  sda: 8
-  scl: 9
-  scan: true
-  id: bus_a
-  frequency: 100kHz
-  sda_pullup_enabled: true
-  scl_pullup_enabled: true
-  
-sensor:
-  - platform: aht10
-    variant: AHT20
-    temperature:
-      id: temperature_cold
-      name: Temperature (Cold)
-      unit_of_measurement: °C
-      accuracy_decimals: 1
-      icon: "mdi:thermometer"
-    humidity:
-      id: humidity_cold
-      name: Humidity (Cold)
-      accuracy_decimals: 1
-      icon: "mdi:water"
-    address: 0x38
-    update_interval: 5s
-
-  - platform: bme680
-    temperature:
-      id: temperature_hot
-      name: Temperature (Hot)
-      oversampling: 16x
-      accuracy_decimals: 1
-      unit_of_measurement: °C
-      filters:
-        - offset: 1
-      icon: "mdi:thermometer"
-    pressure:
-      name: Pressure
-      icon: "mdi:car-brake-low-pressure"
-    humidity:
-      id: humidity_hot
-      name: Humidity (Hot)
-      icon: "mdi:water"
-    gas_resistance:
-      id: gas_resistance
-      name: Gas Resistance
-      icon: "mdi:meter-gas"
-    address: 0x77
-    update_interval: 5s
-
-  - platform: template
-    name: "Indoor Air Quality"
-    id: iaq
-    icon: "mdi:gauge"
-    update_interval: 10s
-    lambda: |-
-      return log(id(gas_resistance).state) + 0.04 * id(humidity_hot).state;
-
-text_sensor:
-  - platform: template
-    name: "IAQ Classification"
-    icon: "mdi:checkbox-marked-circle-outline"
-    update_interval: 10s
-    lambda: |-
-      if (int(id(iaq).state) <= 50) {
-        return {"Excellent"};
-      }
-      else if (int(id(iaq).state) <= 100) {
-        return {"Good"};
-      }
-      else if (int(id(iaq).state) <= 150) {
-        return {"Lightly polluted"};
-      }
-      else if (int(id(iaq).state) <= 200) {
-        return {"Moderately polluted"};
-      }
-      else if (int(id(iaq).state) <= 250) {
-        return {"Heavily polluted"};
-      }
-      else if (int(id(iaq).state) <= 350) {
-        return {"Severely polluted"};
-      }
-      else if (int(id(iaq).state) <= 500) {
-        return {"Extremely polluted"};
-      }
-      else {
-        return {"unknown"};
-      }
