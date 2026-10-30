@@ -14,5 +14,3 @@ binary_sensor:
       mode:
         input: true
         pullup: true
-    filters:
-      - invert:
