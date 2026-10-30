@@ -3,17 +3,23 @@ substitutions:
   devicename: "esp32-supermini-temps"
   friendly_name: "esp32-supermini-temps"
   update_time: 5s
-  aht_temperature_id: temperature_cold
-  aht_temperature_name: Temperature (Cold)
-  aht_humidity_id: humidity_cold
-  aht_humidity_name: Humidity (Cold)
-  bme_temperature_id: temperature_hot
-  bme_temperature_name: Temperature (Hot)
-  bme_humidity_id: humidity_hot
-  bme_humidity_name: Humidity (Hot)
+
 
 packages:
   core: !include common/supermini/core.yaml
   i2c: !include common/supermini/i2c.yaml
-  temp1: !include common/sensors/aht30.yaml
-  temp2: !include common/sensors/bme680.yaml
+  temp1: !include
+    file: common/sensors/aht30.yaml
+    vars:
+        aht_temperature_id: temperature_cold
+        aht_temperature_name: Temperature (Cold)
+        aht_humidity_id: humidity_cold
+        aht_humidity_name: Humidity (Cold)
+  temp2: !include
+    file: common/sensors/bme680.yaml
+    vars:
+      bme_temperature_id: temperature_hot
+      bme_temperature_name: Temperature (Hot)
+      bme_humidity_id: humidity_hot
+      bme_humidity_name: Humidity (Hot)
+      
