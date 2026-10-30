@@ -2,7 +2,7 @@
 substitutions:
   devicename: "esp32-supermini-temps"
   friendly_name: "esp32-supermini-temps"
-  update_time: 10s
+  update_time: 5s
   aht_temperature_id: temperature_cold
   aht_temperature_name: Temperature (Cold)
   aht_humidity_id: humidity_cold
