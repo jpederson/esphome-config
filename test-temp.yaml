@@ -15,6 +15,7 @@ packages:
         sen_temperature_name: Temperature (Hot)
         sen_humidity_id: humidity_hot
         sen_humidity_name: Humidity (Hot)
+        update_time: 3s
   temp_cold: !include
     file: common/sensors/aht30.yaml
     vars:
