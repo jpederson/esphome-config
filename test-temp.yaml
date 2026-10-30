@@ -18,7 +18,7 @@ packages:
 
 
 sensor:
-  - platform: sht3xd
+  - platform: hdc1080
     temperature:
       id: temperature_hot
       name: "Temperature (Hot)"
