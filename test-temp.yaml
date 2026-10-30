@@ -16,7 +16,7 @@ packages:
         aht_humidity_name: Humidity (Cold) 
 
 i2c:
-  id: my_i2c_bus
+  id: i2c_a
   sda: 8
   scl: 9
   scan: true
@@ -34,7 +34,7 @@ sensor:
     lambda: |-
       // 1. Send the measurement command (0x2400)
       uint8_t cmd[2] = {0x24, 0x00};
-      if (id(my_i2c_bus).write(0x44, cmd, 2) != esphome::i2c::ERROR_OK) {
+      if (id(i2c_a).write(0x44, cmd, 2) != esphome::i2c::ERROR_OK) {
         ESP_LOGE("custom_cht", "Failed to send read command");
         return {};
       }
@@ -44,7 +44,7 @@ sensor:
       
       // 3. Request 6 bytes of data
       uint8_t data[6];
-      if (id(my_i2c_bus).read(0x44, data, 6) != esphome::i2c::ERROR_OK) {
+      if (id(i2c_a).read(0x44, data, 6) != esphome::i2c::ERROR_OK) {
         ESP_LOGE("custom_cht", "Failed to read data bytes");
         return {};
       }
