@@ -8,14 +8,14 @@ substitutions:
 packages:
   core: !include common/supermini/core.yaml
   i2c: !include common/supermini/i2c.yaml  
-  temp0: !include
+  temp_hot: !include
     file: common/sensors/sen0546.yaml
     vars:
         sen_temperature_id: temperature_hot
         sen_temperature_name: Temperature (Hot)
         sen_humidity_id: humidity_hot
         sen_humidity_name: Humidity (Hot) 
-  temp1: !include
+  temp_cold: !include
     file: common/sensors/aht30.yaml
     vars:
         aht_temperature_id: temperature_cold
