@@ -3,12 +3,11 @@ substitutions:
   devicename: "garage"
   friendly_name: "Garage"
   update_time: 10s
-  temp_offset: -2
+  bme_temperature_offset: -2
   
 packages:
   core: !include common/supermini/core.yaml
   i2c: !include common/supermini/i2c.yaml
   motion: !include common/sensors/ld1125h.yaml
   temp: !include common/sensors/bme680.yaml
-
 
