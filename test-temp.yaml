@@ -7,6 +7,7 @@ substitutions:
   
 packages:
   core: !include common/supermini/core.yaml
+  i2c: !include common/supermini/i2c.yaml
   temp1: !include
     file: common/sensors/aht30.yaml
     vars:
@@ -14,13 +15,6 @@ packages:
         aht_temperature_name: Temperature (Cold)
         aht_humidity_id: humidity_cold
         aht_humidity_name: Humidity (Cold) 
-
-i2c:
-  id: i2c_a
-  sda: 8
-  scl: 9
-  scan: true
-  frequency: 100kHz
 
 sensor:
   - platform: template
