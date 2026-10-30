@@ -1,25 +1,19 @@
-esphome:
-  name: random-button
-  friendly_name: Random Button
 
-# Replace this with your actual platform if you aren't using ESP32.
-esp32:
-  board: esp32dev
+substitutions:
+  devicename: "random-button"
+  friendly_name: "Random Button"
 
-logger:
-
-api:
-  encryption:
-    key: "HudhhL8O55jXhrxXwPGBdbI3lKHR0rqgxvZa077EcBQ="
-
-ota:
-  - platform: esphome
-
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-  ap:
-    ssid: Random Button Fallback Hotspot
-    password: "RlTHTv2ak5K7"
-
-captive_portal:
+packages:
+  core: !include common/supermini/core.yaml
+            
+binary_sensor:
+  - platform: gpio
+    name: "Button"
+    pin:
+      number: 0
+      mode:
+        input: true
+        pullup: true
+    filters:
+      - invert:
+          
