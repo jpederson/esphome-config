@@ -1,7 +1,7 @@
 
 substitutions:
-  devicename: "dust-toggle-workbench"
-  friendly_name: "Dust Collector Toggle (Workbench)"
+  devicename: "esp32-supermini-button"
+  friendly_name: "esp32-supermini-button"
 
 packages:
   core: !include common/supermini/core.yaml
