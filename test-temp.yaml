@@ -14,7 +14,14 @@ packages:
         aht_temperature_id: temperature_cold
         aht_temperature_name: Temperature (Cold)
         aht_humidity_id: humidity_cold
-        aht_humidity_name: Humidity (Cold)
+        aht_humidity_name: Humidity (Cold) 
+  temp2: !include
+    file: common/sensors/aht30.yaml
+    vars:
+        aht_temperature_id: temperature_hot
+        aht_temperature_name: Temperature (Hot)
+        aht_humidity_id: humidity_hot
+        aht_humidity_name: Humidity (Hot)
 #  temp2: !include
 #    file: common/sensors/bme680.yaml
 #    vars:
