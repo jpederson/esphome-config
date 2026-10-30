@@ -17,3 +17,4 @@ packages:
   i2c: !include common/supermini/i2c.yaml
   temp1: !include common/sensors/aht30.yaml
   temp2: !include common/sensors/bme680.yaml
+ 
