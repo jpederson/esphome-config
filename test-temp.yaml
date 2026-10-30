@@ -20,4 +20,3 @@ packages:
     vars:
       bmp_temperature_id: temperature_hot
       bmp_temperature_name: Temperature (Hot)
-      
