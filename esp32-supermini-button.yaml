@@ -1,25 +1,18 @@
-esphome:
-  name: esp32-supermini-button
-  friendly_name: esp32-supermini-button
 
-# Replace this with your actual platform if you aren't using ESP32.
-esp32:
-  board: esp32dev
+substitutions:
+  devicename: "dust-toggle-workbench"
+  friendly_name: "Dust Collector Toggle (Workbench)"
 
-logger:
-
-api:
-  encryption:
-    key: "uAOt3A5Qv1YhFGc1uFKPTTpngkVPfqZALJccN1sG0EA="
-
-ota:
-  - platform: esphome
-
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-  ap:
-    ssid: esp32-supermini Fallback Hotspot
-    password: "WHK7Id89AY6V"
-
-captive_portal:
+packages:
+  core: !include common/supermini/core.yaml
+            
+binary_sensor:
+  - platform: gpio
+    name: "Button"
+    pin:
+      number: 0
+      mode:
+        input: true
+        pullup: true
+    filters:
+      - invert:
