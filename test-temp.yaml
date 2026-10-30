@@ -4,11 +4,6 @@ substitutions:
   friendly_name: "esp32-supermini-temps"
   update_time: 5s
 
-i2c:
-  sda: 8
-  scl: 9
-  scan: true
-  frequency: 100kHz
   
 packages:
   core: !include common/supermini/core.yaml
@@ -20,6 +15,12 @@ packages:
         aht_humidity_id: humidity_cold
         aht_humidity_name: Humidity (Cold) 
 
+i2c:
+  sda: 8
+  scl: 9
+  scan: true
+  frequency: 100kHz
+  
 sensor:
   - platform: sht3xd
     temperature:
@@ -29,4 +30,4 @@ sensor:
       id: humidity_hot
       name: "Humidity (Hot)"
     address: 0x44
-    update_interval: 10s
+    update_interval: ${update_time}
