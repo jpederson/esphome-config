@@ -10,4 +10,3 @@ packages:
   i2c: !include common/supermini/i2c.yaml
   motion: !include common/sensors/ld1125h.yaml
   temp: !include common/sensors/bme680.yaml
-
