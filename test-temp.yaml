@@ -16,10 +16,8 @@ packages:
         aht_humidity_id: humidity_cold
         aht_humidity_name: Humidity (Cold)
   temp2: !include
-    file: common/sensors/bme680.yaml
+    file: common/sensors/bmp280.yaml
     vars:
-      bme_temperature_id: temperature_hot
-      bme_temperature_name: Temperature (Hot)
-      bme_humidity_id: humidity_hot
-      bme_humidity_name: Humidity (Hot)
+      bmp_temperature_id: temperature_hot
+      bmp_temperature_name: Temperature (Hot)
       
