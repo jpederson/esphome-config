@@ -15,17 +15,15 @@ packages:
         aht_temperature_name: Temperature (Cold)
         aht_humidity_id: humidity_cold
         aht_humidity_name: Humidity (Cold) 
-  temp2: !include
-    file: common/sensors/aht30.yaml
-    vars:
-        aht_temperature_id: temperature_hot
-        aht_temperature_name: Temperature (Hot)
-        aht_humidity_id: humidity_hot
-        aht_humidity_name: Humidity (Hot)
-#  temp2: !include
-#    file: common/sensors/bme680.yaml
-#    vars:
-#      bme_temperature_id: temperature_hot
-#      bme_temperature_name: Temperature (Hot)
-#      bme_humidity_id: humidity_hot
-#      bme_humidity_name: Humidity (Hot)
+
+
+sensor:
+  - platform: sht3xd
+    temperature:
+      id: temperature_hot
+      name: "Temperature (Hot)"
+    humidity:
+      id: humidity_hot
+      name: "Humidity (Hot)"
+    address: 0x44
+    update_interval: 10s
