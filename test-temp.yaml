@@ -16,17 +16,54 @@ packages:
         aht_humidity_name: Humidity (Cold) 
 
 i2c:
+  id: my_i2c_bus
   sda: 8
   scl: 9
   scan: true
-  
+  frequency: 100kHz
+
 sensor:
-  - platform: sht3xd
-    temperature:
-      id: temperature_hot
-      name: "Temperature (Hot)"
-    humidity:
-      id: humidity_hot
-      name: "Humidity (Hot)"
-    address: 0x44
-    update_interval: ${update_time}
+  - platform: template
+    name: "Sensor Temperature"
+    id: sensor_temperature
+    unit_of_measurement: "°C"
+    device_class: "temperature"
+    state_class: "measurement"
+    accuracy_decimals: 1
+    update_interval: 10s
+    lambda: |-
+      // 1. Send the measurement command (0x2400)
+      uint8_t cmd[2] = {0x24, 0x00};
+      if (id(my_i2c_bus).write(0x44, cmd, 2) != esphome::i2c::ERROR_OK) {
+        ESP_LOGE("custom_cht", "Failed to send read command");
+        return {};
+      }
+      
+      // 2. Wait for conversion (60ms required)
+      delay(60);
+      
+      // 3. Request 6 bytes of data
+      uint8_t data[6];
+      if (id(my_i2c_bus).read(0x44, data, 6) != esphome::i2c::ERROR_OK) {
+        ESP_LOGE("custom_cht", "Failed to read data bytes");
+        return {};
+      }
+      
+      // 4. Calculate Temperature from bytes 0 and 1
+      uint16_t raw_temp = (data[0] << 8) | data[1];
+      float temp = -45.0 + (175.0 * (float)raw_temp / 65535.0);
+      
+      // 5. Store humidity temporarily to push to the next template sensor
+      uint16_t raw_hum = (data[3] << 8) | data[4];
+      float hum = 100.0 * (float)raw_hum / 65535.0;
+      id(sensor_humidity).publish_state(hum);
+      
+      return temp;
+
+  - platform: template
+    name: "Sensor Humidity"
+    id: sensor_humidity
+    unit_of_measurement: "%"
+    device_class: "humidity"
+    state_class: "measurement"
+    accuracy_decimals: 1
