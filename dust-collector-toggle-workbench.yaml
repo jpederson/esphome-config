@@ -5,6 +5,7 @@ substitutions:
 
 packages:
   core: !include common/supermini/core.yaml
+  bt: !include common/supermini/bluetooth.yaml
 
 light:
   - platform: esp32_rmt_led_strip
