@@ -1,0 +1,19 @@
+
+substitutions:
+  devicename: "sbv2-hot"
+  friendly_name: "Snowball Sensors (Hot)"
+  update_time: 5s
+
+  
+packages:
+  core: !include common/supermini/core.yaml
+  bt: !include common/supermini/bluetooth.yaml
+  i2c: !include common/supermini/i2c.yaml
+  temp_hot: !include
+    file: common/sensors/sen0546.yaml
+    vars:
+        sen_temperature_id: temperature_hot
+        sen_temperature_name: Temperature (Hot)
+        # sen_temperature_offset: 7.7
+        sen_humidity_id: humidity_hot
+        sen_humidity_name: Humidity (Hot)
