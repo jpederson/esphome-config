@@ -13,6 +13,6 @@ packages:
     vars:
         sen_temperature_id: temperature_hot
         sen_temperature_name: Temperature (Hot)
-        sen_temperature_offset: 5
+        #sen_temperature_offset: 5
         sen_humidity_id: humidity_hot
         sen_humidity_name: Humidity (Hot)
