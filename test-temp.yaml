@@ -1,7 +1,7 @@
 
 substitutions:
   devicename: "sbv2-hot-primary"
-  friendly_name: "Snowball Hot Sensors (Primary)"
+  friendly_name: "Snowball Sensors (Hot)"
   update_time: 5s
 
   
