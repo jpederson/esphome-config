@@ -12,4 +12,4 @@ packages:
   temp_hot: !include
     file: common/sensors/sen0546.yaml
     vars:
-        # sen_temperature_offset: 7.7
+      # sen_temperature_offset: 7.7
