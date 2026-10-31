@@ -7,6 +7,7 @@ substitutions:
   
 packages:
   core: !include common/supermini/core.yaml
+  bt: !include common/supermini/bluetooth.yaml
   i2c: !include common/supermini/i2c.yaml
   temp_hot: !include
     file: common/sensors/sen0546.yaml
