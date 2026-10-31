@@ -1,7 +1,7 @@
 
 substitutions:
-  devicename: "esp32-supermini-temps"
-  friendly_name: "esp32-supermini-temps"
+  devicename: "sbv2-hot-primary"
+  friendly_name: "Snowball Hot Sensors (Primary)"
   update_time: 5s
 
   
@@ -14,6 +14,6 @@ packages:
     vars:
         sen_temperature_id: temperature_hot
         sen_temperature_name: Temperature (Hot)
-        sen_temperature_offset: 7.7
+        # sen_temperature_offset: 7.7
         sen_humidity_id: humidity_hot
         sen_humidity_name: Humidity (Hot)
