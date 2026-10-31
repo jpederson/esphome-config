@@ -5,4 +5,5 @@ substitutions:
 
 packages:
   core: !include common/supermini/core.yaml
+  bt: !include common/supermini/bluetooth.yaml
   motion: !include common/sensors/ld2410c.yaml
