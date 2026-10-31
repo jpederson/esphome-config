@@ -64,6 +64,5 @@ sensor:
     unit_of_measurement: °C
     device_class: temperature
     address: 0x94000000caa59b28
-    filters:
-      - offset: 5
+
 
