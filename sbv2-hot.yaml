@@ -12,8 +12,4 @@ packages:
   temp_hot: !include
     file: common/sensors/sen0546.yaml
     vars:
-        sen_temperature_id: temperature_hot
-        sen_temperature_name: Temperature (Hot)
         # sen_temperature_offset: 7.7
-        sen_humidity_id: humidity_hot
-        sen_humidity_name: Humidity (Hot)
