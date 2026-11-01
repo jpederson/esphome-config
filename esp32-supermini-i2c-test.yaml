@@ -1,25 +1,11 @@
-esphome:
-  name: esp32-supermini-i2c-test
-  friendly_name: esp32-supermini-i2c-test
 
-# Replace this with your actual platform if you aren't using ESP32.
-esp32:
-  board: esp32dev
+substitutions:
+  devicename: "esp32-supermini-i2c-test"
+  friendly_name: "esp32-supermini-i2c-test"
+  update_time: 10s
+  bme_temperature_offset: -2
+  
+packages:
+  core: !include common/supermini/core.yaml
+  i2c: !include common/supermini/i2c.yaml
 
-logger:
-
-api:
-  encryption:
-    key: "rpynCQ2uumj3ukleeuiXcw/Jl7WB/JKfGdIIqcZaQz4="
-
-ota:
-  - platform: esphome
-
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-  ap:
-    ssid: esp32-supermini Fallback Hotspot
-    password: "apzRRMY1Dz7X"
-
-captive_portal:
