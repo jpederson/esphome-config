@@ -8,27 +8,6 @@ substitutions:
 packages:
   core: !include common/supermini/core.yaml
   i2c: !include common/supermini/i2c.yaml
-
-sensor:
-  - platform: sgp4x
-    voc_index:
-      name: "VOC Index"
-    nox_index:
-      name: "NOx Index"
-    compensation:
-      humidity_source: humidity
-      temperature_source: temperature
-    store_baseline: true
-    update_interval: ${update_time}
-    
-  - platform: scd4x
-    co2:
-      id: co2
-      name: "CO2 PPM"
-    temperature:
-      id: "temperature"
-      name: "Temperature"
-    humidity:
-      id: "humidity"
-      name: "Humidity"
-    update_interval: ${update_time}
+  bme: !include common/sensors/bme680.yaml
+  sgp: !include common/sensors/sgp41.yaml
+  scd: !include common/sensors/scd40.yaml
