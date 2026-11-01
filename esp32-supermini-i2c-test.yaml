@@ -17,3 +17,12 @@ sensor:
     nox_index:
       name: "NOx Index"
     store_baseline: true
+
+    
+  - platform: scd4x
+    co2:
+      name: "Workshop CO2"
+    temperature:
+      name: "Workshop Temperature"
+    humidity:
+      name: "Workshop Humidity"
