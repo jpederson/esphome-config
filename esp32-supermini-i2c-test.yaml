@@ -9,3 +9,11 @@ packages:
   core: !include common/supermini/core.yaml
   i2c: !include common/supermini/i2c.yaml
 
+sensor:
+  - platform: sgp4x
+    address: 0x59
+    voc_index:
+      name: "VOC Index"
+    nox_index:
+      name: "NOx Index"
+    store_baseline: true
