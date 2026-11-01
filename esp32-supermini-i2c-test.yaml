@@ -15,4 +15,3 @@ packages:
       sgp_temperature_id: temperature
       sgp_humidity_id: humidity
   scd: !include common/sensors/scd40.yaml
-      
