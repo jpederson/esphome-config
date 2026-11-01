@@ -24,7 +24,7 @@ sensor:
   - platform: scd4x
     co2:
       id: co2
-      name: "CO2"
+      name: "CO2 PPM"
     temperature:
       id: "temperature"
       name: "Temperature"
