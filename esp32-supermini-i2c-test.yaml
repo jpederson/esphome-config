@@ -15,14 +15,20 @@ sensor:
       name: "VOC Index"
     nox_index:
       name: "NOx Index"
+    compensation:
+      humidity_source: humidity
+      temperature_source: temperature
     store_baseline: true
     update_interval: ${update_time}
     
   - platform: scd4x
     co2:
-      name: "Workshop CO2"
+      id: co2
+      name: "CO2"
     temperature:
-      name: "Workshop Temperature"
+      id: "temperature"
+      name: "Temperature"
     humidity:
-      name: "Workshop Humidity"
+      id: "humidity"
+      name: "Humidity"
     update_interval: ${update_time}
