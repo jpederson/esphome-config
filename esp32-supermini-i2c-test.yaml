@@ -16,7 +16,7 @@ sensor:
     nox_index:
       name: "NOx Index"
     store_baseline: true
-
+    update_interval: ${update_time}
     
   - platform: scd4x
     co2:
@@ -25,3 +25,4 @@ sensor:
       name: "Workshop Temperature"
     humidity:
       name: "Workshop Humidity"
+    update_interval: ${update_time}
