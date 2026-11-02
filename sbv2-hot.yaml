@@ -2,7 +2,6 @@
 substitutions:
   devicename: "sbv2-hot"
   friendly_name: "Snowball Sensors (Hot)"
-  #bme_temperature_offset: 5
   update_time: 5s
 
   
