@@ -9,13 +9,14 @@ packages:
   core: !include common/supermini/core.yaml
   bluetooth: !include common/supermini/bluetooth.yaml
   motion: !include common/sensors/ld2410c.yaml
-  i2c: !include common/supermini/i2c.yaml
-  bme: !include common/sensors/bme680.yaml
-  sgp: !include 
-    file: common/sensors/sgp41.yaml
-    substitutions:
-      sgp_temperature_id: temperature
-      sgp_humidity_id: humidity
-  scd: !include common/sensors/scd40.yaml
-  iaq: !include common/sensors/iaq-calculate.yaml
+  
+#  i2c: !include common/supermini/i2c.yaml
+#  bme: !include common/sensors/bme680.yaml
+#  sgp: !include 
+#    file: common/sensors/sgp41.yaml
+#    substitutions:
+#      sgp_temperature_id: temperature
+#      sgp_humidity_id: humidity
+#  scd: !include common/sensors/scd40.yaml
+#  iaq: !include common/sensors/iaq-calculate.yaml
   
