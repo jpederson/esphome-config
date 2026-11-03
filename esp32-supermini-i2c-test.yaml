@@ -17,5 +17,5 @@ packages:
       sgp_humidity_id: humidity
   scd: !include common/sensors/scd40.yaml
   iaq: !include common/sensors/iaq-calculate.yaml
-  motion: !include common/sensors/ld2410c.yaml
+#  motion: !include common/sensors/ld2410c.yaml
   
