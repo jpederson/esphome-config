@@ -1,0 +1,34 @@
+
+substitutions:
+  bme_temperature_id: "temperature"
+  bme_temperature_name: "Temperature"
+  bme_temperature_offset: 0
+  bme_humidity_id: "humidity"
+  bme_humidity_name: "Humidity"
+  bme_pressure_id: "pressure"
+  bme_pressure_name: "Pressure"
+  bme_gas_id: "gas"
+  bme_gas_name: "Gas Resistance"
+  update_time: 10s
+
+sensor:
+  - platform: bme680
+    temperature:
+      id: ${bme_temperature_id}
+      name: ${bme_temperature_name}
+      unit_of_measurement: °C
+      accuracy_decimals: 1
+      icon: "mdi:thermometer"
+      filters:
+        offset: ${bme_temperature_offset}
+    pressure:
+      id: ${bme_pressure_id}
+      name: ${bme_pressure_name}
+    humidity:
+      id: ${bme_humidity_id}
+      name: ${bme_humidity_name}
+    gas_resistance:
+      id: ${bme_gas_id}
+      name: ${bme_gas_name}
+    address: 0x77
+    update_interval: ${update_time}

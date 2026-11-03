@@ -1,0 +1,27 @@
+
+substitutions:
+  aht_temperature_id: "temperature"
+  aht_temperature_name: "Temperature"
+  aht_humidity_id: "humidity"
+  aht_humidity_name: "Humidity"
+  aht_temperature_offset: 0
+  update_time: 10s
+
+sensor:
+  - platform: aht10
+    variant: AHT20
+    temperature:
+      id: "${aht_temperature_id}" 
+      name: "${aht_temperature_name}"
+      unit_of_measurement: °C
+      accuracy_decimals: 1
+      icon: "mdi:thermometer"
+      filters:
+        offset: ${aht_temperature_offset}
+    humidity:
+      id: "${aht_humidity_id}" 
+      name: "${aht_humidity_name}"
+      accuracy_decimals: 1
+      icon: "mdi:water"
+    address: 0x38
+    update_interval: ${update_time}

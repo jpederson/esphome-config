@@ -1,0 +1,23 @@
+
+substitutions:
+  voc_id: voc_index
+  voc_name: VOC Index
+  nox_id: nox_index
+  nox_name: NOx Index
+  sgp_temperature_id: temperature
+  sgp_humidity_id: humidity
+  update_time: 10s
+
+sensor:
+  - platform: sgp4x
+    voc_index:
+      id: ${voc_id}
+      name: ${voc_name}
+    nox_index:
+      id: ${nox_id}
+      name: ${nox_name}
+    compensation:
+      humidity_source: ${sgp_humidity_id}
+      temperature_source: ${sgp_temperature_id}
+    store_baseline: true
+    update_interval: ${update_time}

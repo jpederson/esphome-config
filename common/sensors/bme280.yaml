@@ -1,0 +1,26 @@
+
+substitutions:
+  bme_temperature_id: "temperature"
+  bme_temperature_name: "Temperature"
+  bme_temperature_offset: 0
+  bme_humidity_id: "humidity"
+  bme_humidity_name: "Humidity"
+  update_time: 10s
+
+sensor:
+  - platform: bme280_i2c
+    temperature:
+      id: ${bme_temperature_id}
+      name: ${bme_temperature_name}
+      unit_of_measurement: °C
+      accuracy_decimals: 1
+      icon: "mdi:thermometer"
+      filters:
+        offset: ${bme_temperature_offset}
+      oversampling: 16x
+    pressure:
+      name: "Pressure"
+    humidity:
+      id: ${bme_humidity_id}
+      name: ${bme_humidity_name}
+    update_interval: ${update_time}

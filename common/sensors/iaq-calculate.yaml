@@ -1,0 +1,140 @@
+
+substitutions:
+  bme_temperature_id: "temperature"
+  bme_humidity_id: "humidity"
+  bme_gas_id: "gas"
+  bme_pressure_id: "pressure"
+  co2_id: "co2"
+  voc_id: "voc_index"
+  nox_id: "nox_index"
+  update_time: 10s
+
+sensor:
+  - platform: template
+    name: "IAQ Index"
+    id: iaq
+    icon: "mdi:air-filter"
+    unit_of_measurement: ""
+    accuracy_decimals: 0
+    update_interval: ${update_time}
+    lambda: |-
+      // Lambda wrapper accepts pressure as the 7th argument
+      auto calcAQI = [](double co2_ppm, double voc_idx, double nox_idx, 
+                         double gas_res_kohm, double humidity, double temp_c, double pressure_hpa) -> float {
+          
+          // --- CO2 Sub-Index ---
+          double score_co2 = 0;
+          if (co2_ppm <= 400) score_co2 = 0;
+          else if (co2_ppm <= 1000) score_co2 = ((co2_ppm - 400) / 600.0) * 40.0;
+          else if (co2_ppm <= 2000) score_co2 = 40.0 + ((co2_ppm - 1000) / 1000.0) * 40.0;
+          else score_co2 = 80.0 + ((co2_ppm - 2000) / 1000.0) * 20.0;
+          if (score_co2 > 100.0) score_co2 = 100.0;
+
+          // --- VOC & NOx Sub-Indices ---
+          double score_voc = (voc_idx / 500.0) * 100.0;
+          if (score_voc > 100.0) score_voc = 100.0;
+
+          double score_nox = (nox_idx / 500.0) * 100.0;
+          if (score_nox > 100.0) score_nox = 100.0;
+
+          // --- Gas Resistance Sub-Index ---
+          double clean_air_res = 50.0; 
+          double score_gas_res = 0;
+          if (gas_res_kohm < clean_air_res) {
+              score_gas_res = ((clean_air_res - gas_res_kohm) / clean_air_res) * 100.0;
+          }
+          if (score_gas_res > 100.0) score_gas_res = 100.0;
+
+          // --- Humidity, Temp & Pressure Comfort Matrix ---
+          double score_hum = 0;
+          if (humidity < 40.0) score_hum = ((40.0 - humidity) / 40.0) * 50.0;
+          else if (humidity > 60.0) score_hum = ((humidity - 60.0) / 40.0) * 50.0;
+          
+          double score_temp = 0;
+          if (temp_c < 20.0) score_temp = ((20.0 - temp_c) / 20.0) * 50.0;
+          else if (temp_c > 26.0) score_temp = ((temp_c - 26.0) / 15.0) * 50.0;
+
+          // Pressure evaluation: Penalizes extreme changes away from normal standard (1013.25 hPa)
+          double score_press = 0;
+          double p_dev = std::abs(pressure_hpa - 1013.25);
+          if (p_dev > 30.0) { // Changes greater than 30 hPa indicate significant weather shifts / cabin changes
+              score_press = (p_dev / 50.0) * 25.0; 
+          }
+          
+          // Blend comfort markers together
+          double score_comfort = (score_hum + score_temp + score_press);
+          if (score_comfort > 100.0) score_comfort = 100.0;
+
+          // --- Max-Blending Fusion Strategy ---
+          double max_critical = score_co2;
+          if (score_voc > max_critical) max_critical = score_voc;
+          if (score_nox > max_critical) max_critical = score_nox;
+          if (score_gas_res > max_critical) max_critical = score_gas_res;
+
+          double raw_iaq_percentage = (max_critical * 0.75) + (score_comfort * 0.25);
+          
+          float final_aqi = (raw_iaq_percentage / 100.0) * 500.0;
+          if (final_aqi > 500.0) final_aqi = 500.0;
+          if (final_aqi < 0.0) final_aqi = 0.0;
+
+          return round( final_aqi );
+      };
+
+      // Execute calculation mapping all 7 parameters
+      return calcAQI(
+        id( ${co2_id} )->state, 
+        id( ${voc_id} )->state, 
+        id( ${nox_id} )->state, 
+        id( ${bme_gas_id} )->state, 
+        id( ${bme_humidity_id} )->state, 
+        id( ${bme_temperature_id} )->state,
+        id( ${bme_pressure_id} )->state
+      );
+
+  - platform: template
+    id: fan_speed
+    name: "Recommended Fan Speed"
+    unit_of_measurement: "%"
+    accuracy_decimals: 0
+    icon: "mdi:fan"
+    update_interval: ${update_time}
+    lambda: |-
+      if (!id(iaq).has_state()) {
+        return 25;
+      }
+      
+      float iaqi = id(iaq).state;
+      if (iaqi <= 50) { // IAQI 0-50: Good -> Fan at 20% (Minimum air circulation)
+        return 25;
+      } else if (iaqi <= 100) { // IAQI 51-100: Moderate -> Fan scales linearly from 20% to 50%
+        return 50;
+      } else if (iaqi <= 150) { // IAQI 101-150: Unhealthy for Sensitive Groups -> Fan scales from 50% to 80%
+        return 75;
+      } else { // IAQI 151+: Unhealthy / Hazardous -> Fan runs at 100%
+        return 100.0;
+      }
+      
+text_sensor:
+  - platform: template
+    id: iaq_friendly
+    name: "IAQ Classification"
+    icon: "mdi:checkbox-marked-circle-outline"
+    update_interval: ${update_time}
+    lambda: |-
+      if (int(id(iaq).state) <= 50) {
+        return {"Excellent"};
+      } else if (int(id(iaq).state) <= 100) {
+        return {"Good"};
+      } else if (int(id(iaq).state) <= 150) {
+        return {"Lightly polluted"};
+      } else if (int(id(iaq).state) <= 200) {
+        return {"Moderately polluted"};
+      } else if (int(id(iaq).state) <= 250) {
+        return {"Heavily polluted"};
+      } else if (int(id(iaq).state) <= 350) {
+        return {"Severely polluted"};
+      } else if (int(id(iaq).state) <= 500) {
+        return {"Extremely polluted"};
+      } else {
+        return {"unknown"};
+      }

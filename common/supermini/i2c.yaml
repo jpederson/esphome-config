@@ -1,0 +1,12 @@
+substitutions:
+  i2c_id: i2c_a
+  sda: 8
+  scl: 9
+
+i2c:
+  id: ${i2c_id}
+  sda: ${sda}
+  scl: ${scl}
+  scan: true
+  frequency: 100kHz
+  

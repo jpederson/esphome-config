@@ -1,0 +1,24 @@
+
+substitutions:
+  co2_id: co2
+  co2_name: CO2 PPM
+  scd_temperature_id: temperature_scd
+  scd_temperature_name: Temperature (SCD40)
+  scd_humidity_id: humidity_scd
+  scd_humidity_name: Humidity (SCD40)
+  ambient_pressure_compensation_source: pressure
+  update_time: 10s
+
+sensor:
+  - platform: scd4x
+    co2:
+      id: ${co2_id}
+      name: ${co2_name}
+    temperature:
+      id: ${scd_temperature_id}
+      name: ${scd_temperature_name}
+    humidity:
+      id: ${scd_humidity_id}
+      name: ${scd_humidity_name}
+    ambient_pressure_compensation_source: ${ambient_pressure_compensation_source}
+    update_interval: ${update_time}

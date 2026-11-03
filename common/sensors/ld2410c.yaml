@@ -1,0 +1,48 @@
+
+logger:
+  baud_rate: 0
+
+uart:
+  - id: uart_b
+    tx_pin: 20
+    rx_pin: 21
+    baud_rate: 256000
+    parity: NONE
+    stop_bits: 1
+
+ld2410:
+  uart_id: uart_b
+
+binary_sensor:
+  - platform: ld2410
+    has_target:
+      name: "LD2410C Presence"
+    has_moving_target:
+      name: "LD2410C Moving Target"
+    has_still_target:
+      name: "LD2410C Still Target"
+    out_pin_presence_status:
+      name: "LD2410C Out Pin Status"
+
+sensor:
+  - platform: ld2410
+    moving_distance:
+      name: "LD2410C Moving Target Distance"
+    still_distance:
+      name: "LD2410C Still Target Distance"
+    moving_energy:
+      name: "LD2410C Moving Target Energy"
+    still_energy:
+      name: "LD2410C Still Target Energy"
+    detection_distance:
+      name: "LD2410C Detection Distance"
+
+button:
+  - platform: ld2410
+    factory_reset:
+      name: "LD2410C Factory Reset"
+    restart:
+      name: "LD2410C Restart"
+    query_params:
+      name: "LD2410C Query Parameters"
+      

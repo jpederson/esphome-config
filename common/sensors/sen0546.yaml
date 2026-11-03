@@ -1,0 +1,55 @@
+substitutions:
+  sen_temperature_id: "temperature"
+  sen_temperature_name: "Temperature"
+  sen_temperature_offset: 0
+  sen_humidity_id: "humidity"
+  sen_humidity_name: "Humidity"
+  update_time: 15s
+
+sensor:
+  - platform: template
+    id: ${sen_temperature_id}
+    name: ${sen_temperature_name}
+    unit_of_measurement: "°C"
+    device_class: "temperature"
+    state_class: "measurement"
+    accuracy_decimals: 1
+    update_interval: ${update_time}
+    filters:
+      offset: ${sen_temperature_offset}
+    lambda: |-
+      // 1. Send the measurement command (0x2400)
+      uint8_t cmd[2] = {0x24, 0x00};
+      if (id(i2c_a).write(0x44, cmd, 2) != esphome::i2c::ERROR_OK) {
+        ESP_LOGE("custom_cht", "Failed to send read command");
+        return {};
+      }
+      
+      // 2. Wait for conversion (60ms required)
+      delay(60);
+      
+      // 3. Request 6 bytes of data
+      uint8_t data[6];
+      if (id(i2c_a).read(0x44, data, 6) != esphome::i2c::ERROR_OK) {
+        ESP_LOGE("custom_cht", "Failed to read data bytes");
+        return {};
+      }
+      
+      // 4. Calculate Temperature from bytes 0 and 1
+      uint16_t raw_temp = (data[0] << 8) | data[1];
+      float temp = -45.0 + (175.0 * (float)raw_temp / 65535.0);
+      
+      // 5. Store humidity temporarily to push to the next template sensor
+      uint16_t raw_hum = (data[3] << 8) | data[4];
+      float hum = 100.0 * (float)raw_hum / 65535.0;
+      id( ${sen_humidity_id} ).publish_state(hum);
+      
+      return temp;
+
+  - platform: template
+    id: ${sen_humidity_id}
+    name: ${sen_humidity_name}
+    unit_of_measurement: "%"
+    device_class: "humidity"
+    state_class: "measurement"
+    accuracy_decimals: 1

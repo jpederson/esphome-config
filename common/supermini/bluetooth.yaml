@@ -1,0 +1,5 @@
+
+bluetooth_proxy:
+  active: true
+  connection_slots: 3
+  cache_services: true
