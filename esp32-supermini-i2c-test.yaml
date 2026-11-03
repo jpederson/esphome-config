@@ -2,7 +2,7 @@
 substitutions:
   devicename: "esp32-supermini-i2c-test"
   friendly_name: "esp32-supermini-i2c-test"
-  update_time: 10s
+  update_time: 5s
   bme_temperature_offset: -2
   
 packages:
